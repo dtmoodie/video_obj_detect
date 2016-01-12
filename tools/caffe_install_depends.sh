@@ -1,13 +1,10 @@
 # future work, check out https://github.com/BVLC/caffe/wiki/Caffe-on-EC2-Ubuntu-14.04-Cuda-7
 
 # KEEP UBUNTU OR DEBIAN UP TO DATE
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-sudo apt-get autoremove
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove
 
 # general depends
-sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
+sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
 sudo apt-get install -y --no-install-recommends libboost-all-dev
 
 # BLAS
