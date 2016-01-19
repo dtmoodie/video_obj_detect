@@ -11,4 +11,5 @@ sudo apt-get install libgsl0-dev libboost-all-dev libfftw3-dev libtiff5-dev
 sudo apt-get install qt5-default qttools5-dev qtscript5-dev
 
 # VTK
+# redundancy in opencv depends
 sudo apt-get install libvtk6-dev
