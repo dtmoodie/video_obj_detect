@@ -1,4 +1,5 @@
 # future work, check out https://github.com/BVLC/caffe/wiki/Caffe-on-EC2-Ubuntu-14.04-Cuda-7
+# CuDNN https://github.com/facebook/fbcunn/blob/master/INSTALL.md
 
 # KEEP UBUNTU OR DEBIAN UP TO DATE
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove

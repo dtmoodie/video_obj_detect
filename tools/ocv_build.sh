@@ -36,13 +36,18 @@ make_options="      -D BUILD_SHARED_LIBS=OFF \
       -D WITH_TBB=ON \
       -D WITH_V4L=ON \
       -D BUILD_EXAMPLES=OFF \
+      -D INSTALL_C_EXAMPLES=OFF \
       -D WITH_GDAL=ON \
       -D WITH_OPENGL=ON \
+      -D WITH_VTK=ON \
+      -D WITH_GTK=ON \
       -D WITH_QT=OFF \
        USE_EIGEN=/usr/include/eigen3 \
       -D WITH_XINE=ON \
-      -D WITH_OPENGL=ON \
       -D WITH_CUDA=ON \
+      -D ENABLED_FAST_MATH=1 \
+      -D CUDA_FAST_MATH=1 \
+      -D WITH_CUBLAS = 1 \
       -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda/ \ "
 
 cd $path_release
