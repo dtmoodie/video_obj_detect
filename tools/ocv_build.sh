@@ -74,6 +74,7 @@ echo "Building release..."
 make clean
 time make -j $num_jobs
 sudo make install
+sudo ldconfig
 
 # DEBUG
 cd $path_debug
@@ -94,3 +95,5 @@ echo "Building release..."
 make clean
 time make -j $num_jobs
 sudo make install
+sudo ldconfig
+
