@@ -21,37 +21,49 @@ if [ ! -d "$path_source" ]; then
 fi
 
 clear
+echo ""
 echo "========================================================================="
 echo "Compile opencv START"
 date
+echo ""
 
 path_release=$path_source/build/release/
 path_debug=$path_source/build/debug/
 
+rm -rf $path_debug
+rm -rf $path_release
 mkdir $path_debug -p
 mkdir $path_release -p
 
-make_options="      -D BUILD_SHARED_LIBS=OFF \
-      -D BUILD_DOCS=ON \
-      -D WITH_TBB=ON \
-      -D WITH_V4L=ON \
-      -D BUILD_EXAMPLES=OFF \
-      -D INSTALL_C_EXAMPLES=OFF \
-      -D WITH_GDAL=ON \
-      -D WITH_OPENGL=ON \
-      -D WITH_VTK=ON \
-      -D WITH_GTK=ON \
-      -D WITH_QT=OFF \
-       USE_EIGEN=/usr/include/eigen3 \
-      -D WITH_XINE=ON \
-      -D WITH_CUDA=ON \
-      -D ENABLED_FAST_MATH=1 \
-      -D CUDA_FAST_MATH=1 \
-      -D WITH_CUBLAS = 1 \
-      -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda/ \ "
+make_options=" \
+-DWITH_QT=ON \
+-DWITH_OPENGL=ON \
+-DBUILD_SHARED_LIBS=OFF \
+-DBUILD_DOCS=ON \
+-DWITH_TBB=ON \
+-DWITH_V4L=ON \
+-DBUILD_EXAMPLES=OFF \
+-DINSTALL_C_EXAMPLES=OFF \
+-DWITH_GDAL=ON \
+-DWITH_VTK=OFF \
+-USE_EIGEN=/usr/include/eigen3 \
+-DWITH_XINE=ON \
+-DWITH_CUDA=ON \
+-DENABLE_FAST_MATH=1 \
+-DCUDA_FAST_MATH=1 \
+-DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda/ \
+-DWITH_CUBLAS=1 \
+-DCMAKE_INSTALL_PREFIX=/usr/local"
 
+# RELEASE
 cd $path_release
-cmake "-D CMAKE_BUILD_TYPE=RELEASE \ $make_options" $path_source
+cur_options="-DCMAKE_BUILD_TYPE=RELEASE $make_options"
+
+echo "    calling..."
+echo "    cmake $cur_options $path_source" |& tee cmake_console_output.txt
+echo ""
+cmake $cur_options $path_source |& tee -a cmake_console_output.txt
+	# call cmake with only *two* input vars
 read -p "Continue to make (y/n)? " -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
@@ -63,16 +75,22 @@ make clean
 time make -j $num_jobs
 sudo make install
 
+# DEBUG
 cd $path_debug
-cmake "-D CMAKE_BUILD_TYPE=DEBUG \ $make_options" $path_source
+cur_options="-DCMAKE_BUILD_TYPE=RELEASE $make_options"
+
+echo "    calling..."
+echo "    cmake $cur_options $path_source" |& tee cmake_console_output.txt
+echo ""
+cmake $cur_options $path_source |& tee -a cmake_console_output.txt
+	# call cmake with only *two* input vars
 read -p "Continue to make (y/n)? " -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
     echo ""
     exit
 fi
-echo "Building debug..."
+echo "Building release..."
 make clean
 time make -j $num_jobs
 sudo make install
-

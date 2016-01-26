@@ -16,18 +16,20 @@ sudo apt-get dist-upgrade
 sudo apt-get install -y build-essential cmake
 
 # GUI:
-sudo apt-get install -y libvtk6-dev libgtk2.0-dev libgtk-3-dev
+sudo apt-get install -y libgtk2.0-dev libgtk-3-dev
 sudo apt-get install -y libgtkglext1 libgtkglext1-dbg  libgtkglext1-dev
- # doesn't fix GtkGlExt = YES ...
-sudo apt-get install -y libghc-gtkglext-dev libgtkglextmm-x11-1.2-0 libgtkglextmm-x11-1.2-dev
-
-# sudo apt-get install -y qt5-default
-# not useing qt-5 just yet
+	# doesn't fix GtkGlExt = YES ...
+sudo apt-get install -y libgtkglext1 libgtkglext1-dbg libgtkglext1-dev libgtkglext1-doc
+sudo apt-get install -y libgtkglextmm-x11-1.2-0 libgtkglextmm-x11-1.2-dev libgtkglextmm-x11-1.2-doc
+sudo apt-get install -y libghc-gtkglext-dev libghc-gtkglext-doc libghc-gtkglext-prof
+sudo apt-get install -y python-gtkglext1
+	# QT
+sudo apt-get install -y qt5-default qttools5-dev
 
 # OpenGL and freeglut
 sudo apt-get install -y freeglut3 freeglut3-dev mesa-common-dev libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev
 
-sudo apt-get install -y libgtkglext1-dev libgtkgl2.0-dev
+sudo apt-get install -y libgtkgl2.0-dev
 
 # Video/Media I/O:
 sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
@@ -60,6 +62,7 @@ sudo apt-get install -y unzip wget
 
 # else
 sudo apt-get build-dep opencv
+sudo apt-get install libgsl0-dev libboost-all-dev libfftw3-dev 
 
 # KEEP UBUNTU OR DEBIAN UP TO DATE
 sudo apt-get autoremove
